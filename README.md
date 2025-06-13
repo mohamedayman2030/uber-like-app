@@ -1,6 +1,6 @@
 ### 🚖 Uber-like App Backend
 
-A scalable backend system for an Uber-like ride-hailing app built with Node.js, PostgreSQL, Redis, Socket.io, and S2 Geometry. The app handles real-time location tracking, ride matching, trip management, and rider-driver authentication.
+A backend system for an Uber-like ride-hailing app built with Node.js, PostgreSQL, Redis, Socket.io, and S2 Geometry. The app handles real-time location tracking, ride matching, trip management, and rider-driver authentication.
 
 ### 🧩 Features
 
