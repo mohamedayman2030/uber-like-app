@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Driver Socket Client</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Driver Socket Client</h1>
+
+  <script>
+    const driverToken = 'your_driver_jwt_token';  // Replace with real token
+    const driverID = 1;
+
+    const socket = io('http://127.0.0.1:3000/drivers', {
+      extraHeaders: {
+        token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ5NzczMzMxLCJleHAiOjE3NTAzNzgxMzF9.L6p2OT2OxQ_O0Qdka-A1yoJHlG8yC2D2wBEOkvaKACo`
+      }
+    });
+
+    socket.on('connect', () => {
+      console.log('✅ Connected as driver:', socket.id);
+
+      const payload = JSON.stringify({ driverID });
+      socket.emit('startReceivingRides', payload);
+    });
+
+    // ✅ Listen for tripCoordinates from server
+    socket.on('tripCoordinates', (data, callback) => {
+      console.log("📍 Received trip request:", data);
+
+      // Simulate a decision (replace with UI logic later)
+      const accepted = confirm("Do you want to accept this ride?");
+      
+      if (accepted) {
+        console.log("✅ Trip accepted");
+        callback({ result: true });
+      } else {
+        console.log("❌ Trip declined");
+        callback({ result: false });
+      }
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    socket.on('connect_error', (err) => {
+      console.error('Connection error:', err.message);
+    });
+  </script>
+</body>
+</html>

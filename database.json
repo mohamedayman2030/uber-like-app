@@ -1,0 +1,10 @@
+{
+    "dev": {
+      "driver": "pg",
+      "host": "postgres",
+      "database": "uber",
+      "user": "uber",
+      "password": "password",
+      "port":5432
+    }
+  }

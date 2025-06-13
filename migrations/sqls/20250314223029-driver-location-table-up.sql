@@ -1,0 +1,1 @@
+CREATE TABLE driver_location (id SERIAL PRIMARY KEY, old_latitude NUMERIC(10,5) NOT NULL, old_longitude NUMERIC(10,5) NOT NULL, new_latitude NUMERIC(10,5) NOT NULL, new_longitude NUMERIC(10,5) NOT NULL,driver_id INT NOT NULL,CONSTRAINT fk_driver FOREIGN KEY (driver_id) REFERENCES drivers(id) ON DELETE CASCADE);
